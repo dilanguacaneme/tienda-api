@@ -1,6 +1,7 @@
 package com.politecnico.caso_de_estudio.Controller;
 
 import com.politecnico.caso_de_estudio.Entity.Producto;
+import com.politecnico.caso_de_estudio.Exeption.ProductoNoEncontradoException;
 import com.politecnico.caso_de_estudio.Service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/producto")
@@ -42,27 +43,46 @@ public class ProductoController {
     }
     //ReadForId
     @GetMapping("/obtener-productos-por-id/{id}")
-    public ResponseEntity<Producto>  buscarProductoPorId (@PathVariable Long id){
+    public ResponseEntity<Object>  buscarProductoPorId (@PathVariable Long id){
 
-        Optional <Producto> producto = productoService.buscarProductoPorId(id);
+        try {
 
-        return producto.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity
-                .notFound().build());
+            Producto producto = productoService.buscarProductoPorId(id);
+            return ResponseEntity.ok(producto);
+        }
+        catch (ProductoNoEncontradoException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+
+        }
+
 
     }
     //DeletedForId
     @DeleteMapping("/borrar-producto-por-id/{id}")
-    public ResponseEntity<Void> borrarProductoPorId (@PathVariable Long id){
+    public ResponseEntity<Object> borrarProductoPorId (@PathVariable Long id){
 
-        boolean fueEliminado = productoService.borrarProductoPorId(id);
+        try {
 
-        if (fueEliminado){
-            return  ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
+            Producto productoAEliminar = productoService.borrarProductoPorId(id);
+
+            return ResponseEntity.ok(productoAEliminar);
+
+        } catch (ProductoNoEncontradoException e) {
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
+    }
 
+    //Update
+    @PatchMapping("/actualizar/{id}")
+    public ResponseEntity<Object> actualizarProducto ( @PathVariable Long id,
+                                                         @RequestBody Producto producto){
+        try {
+            Producto proActualizado = productoService.actualizarProducto(id, producto);
+            return ResponseEntity.ok(proActualizado);
+        } catch (ProductoNoEncontradoException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
     }
 
 }

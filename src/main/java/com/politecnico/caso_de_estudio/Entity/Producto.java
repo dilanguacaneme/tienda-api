@@ -25,12 +25,13 @@ public class Producto {
     private Long id;
 
     @NotNull(message = "El nombre del producto no puede estar vacio")
-
     private String nombre;
 
     @NotNull(message = "El precio del producto no puede estar vacio")
     private Double precio;
 
     @NotNull(message = "La cantidad no puede estar vacia")
-    private int cantidad;
+    private Integer cantidad;
+
+
 }
