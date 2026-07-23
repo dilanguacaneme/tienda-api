@@ -1,6 +1,7 @@
 package com.politecnico.caso_de_estudio.Controller;
 
 import com.politecnico.caso_de_estudio.Entity.Factura;
+import com.politecnico.caso_de_estudio.Exeption.ProductoInsuficienteException;
 import com.politecnico.caso_de_estudio.Exeption.ProductoNoEncontradoException;
 import com.politecnico.caso_de_estudio.Service.FacturaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,8 @@ public class FacturaController {
             return ResponseEntity.status(HttpStatus.CREATED).body(facturaCreada);
         } catch (ProductoNoEncontradoException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        } catch (ProductoInsuficienteException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.politecnico.caso_de_estudio.Service;
 
 import com.politecnico.caso_de_estudio.Entity.*;
+import com.politecnico.caso_de_estudio.Exeption.ProductoInsuficienteException;
 import com.politecnico.caso_de_estudio.Exeption.ProductoNoEncontradoException;
 import com.politecnico.caso_de_estudio.Repository.ProductoRepository;
 import com.politecnico.caso_de_estudio.Repository.FacturaRepository;
@@ -24,13 +25,20 @@ public class FacturaService {
             Producto producto = productoRepository.findById(detalle.getProducto().getId())
                     .orElseThrow(() -> new ProductoNoEncontradoException(detalle.getProducto().getId()));
 
-            double subtotal = producto.getPrecio() * detalle.getCantidad();
+            if ( detalle.getCantidad() <= producto.getCantidad()){
 
-            detalle.setProducto(producto);
-            detalle.setSubtotal(subtotal);
-            detalle.setFactura(factura);
+                double subtotal = producto.getPrecio() * detalle.getCantidad();
 
-            totalFactura += subtotal;
+                Integer nuevaCantidad = producto.getCantidad() - detalle.getCantidad();
+                detalle.setProducto(producto);
+                producto.setCantidad(nuevaCantidad);
+                detalle.setSubtotal(subtotal);
+                detalle.setFactura(factura);
+
+                totalFactura += subtotal;
+            } else {
+                throw new ProductoInsuficienteException(producto.getId());
+            }
         }
 
         factura.setTotal(totalFactura);
