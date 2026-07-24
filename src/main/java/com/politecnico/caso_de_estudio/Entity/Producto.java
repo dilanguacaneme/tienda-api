@@ -32,6 +32,8 @@ public class Producto {
     @NotNull(message = "La cantidad no puede estar vacia")
     private Integer cantidad;
 
+    private Integer cantidadInicial;
+
     @NotNull
     private Double totalProducto;
 

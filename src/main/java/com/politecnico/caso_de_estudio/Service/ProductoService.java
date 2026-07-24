@@ -18,9 +18,11 @@ public class ProductoService {
     //Create
     public Producto crearProducto (Producto producto){
 
+        //Total del producto
+        producto.setTotalProducto(producto.getCantidad() * producto.getPrecio());
 
-        Double total = producto.getCantidad() * producto.getPrecio();
-        producto.setTotalProducto(total);
+
+        producto.setCantidadInicial(producto.getCantidad());
 
 
         return productoRepository.save(producto);
@@ -94,6 +96,14 @@ public class ProductoService {
     }
 
     //Producto mas cerca a acabarse
+
+    public List<Producto> productoCercaAcabarse() {
+
+
+
+
+        return productoRepository.obtenerProductosPocoStock();
+    }
 
     //Costo total inventario
     public Double totalInventario (){

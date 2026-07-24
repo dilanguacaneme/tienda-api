@@ -91,12 +91,20 @@ public class ProductoController {
     public ResponseEntity<Object> totalInventario(){
 
         try {
-            Double invetarioTotal = productoService.totalInventario();
+            Double inventarioTotal = productoService.totalInventario();
 
-            return ResponseEntity.ok(invetarioTotal);
+            return ResponseEntity.ok(inventarioTotal);
         }catch (InventarioVacioException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
+    }
+
+    //Pronto a acabrse
+    @GetMapping("/acabarse")
+    public ResponseEntity<List<Producto>> productoCercaAcabarse (){
+
+           List <Producto> lstProntoAAcabar = productoService.productoCercaAcabarse();
+        return ResponseEntity.ok(lstProntoAAcabar);
     }
 
 }

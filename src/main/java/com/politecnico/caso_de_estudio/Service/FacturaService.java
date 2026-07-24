@@ -32,6 +32,8 @@ public class FacturaService {
                 Integer nuevaCantidad = producto.getCantidad() - detalle.getCantidad();
                 detalle.setProducto(producto);
                 producto.setCantidad(nuevaCantidad);
+                Double nuevoTotalProducto  = producto.getCantidad() * producto.getPrecio();
+                producto.setTotalProducto(nuevoTotalProducto);
                 detalle.setSubtotal(subtotal);
                 detalle.setFactura(factura);
 
