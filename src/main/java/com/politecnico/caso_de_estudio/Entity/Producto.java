@@ -6,7 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,6 +31,9 @@ public class Producto {
 
     @NotNull(message = "La cantidad no puede estar vacia")
     private Integer cantidad;
+
+    @NotNull
+    private Double totalProducto;
 
 
 }

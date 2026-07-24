@@ -1,6 +1,7 @@
 package com.politecnico.caso_de_estudio.Controller;
 
 import com.politecnico.caso_de_estudio.Entity.Producto;
+import com.politecnico.caso_de_estudio.Exeption.InventarioVacioException;
 import com.politecnico.caso_de_estudio.Exeption.ProductoNoEncontradoException;
 import com.politecnico.caso_de_estudio.Service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,6 +82,19 @@ public class ProductoController {
             Producto proActualizado = productoService.actualizarProducto(id, producto);
             return ResponseEntity.ok(proActualizado);
         } catch (ProductoNoEncontradoException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    //Total inventario
+    @GetMapping("/total-inventario")
+    public ResponseEntity<Object> totalInventario(){
+
+        try {
+            Double invetarioTotal = productoService.totalInventario();
+
+            return ResponseEntity.ok(invetarioTotal);
+        }catch (InventarioVacioException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tienda Doña Rosa</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header id="header">
+        <h1 class="nombre-tienda">Tienda Doña Roña</h1>
+    </header>
+
+    <div id="container-producto">
+        <label for="nombre-producto">Nombre producto</label>
+        <input type="text" id="nombre-producto" placeholder="Nombre producto">
+        <label for="cantidad">Cantidad</label>
+        <input type="number" id="cantidad" placeholder="Cantidad">
+        <label for="precio">Precio</label>
+        <input type="number" id="precio" placeholder="Precio">
+        <button id="boton-producto" type="submit">Guardar producto</button>
+    </div>
+
+    <div id="container-tabla-productos">
+        <table id="tabla-productos">
+            <tr>
+                <th>Codigo</th>
+                <th>Nombre producto</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+            </tr>
+            <tr>
+                <td>Alfreds Futterkiste</td>
+                <td>Maria Anders</td>
+                <td>Germany</td>
+                <td>Precio</td>
+                <td>
+                    <button class="boton-tabla-productos-editar" type="submit">Editar</button>
+                    <button class="boton-tabla-productos-eliminar" type="submit">Eliminar</button>
+                    <button class="boton-tabla-productos-actualizar" type="submit">Actualizar</button>
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</body>
+</html>

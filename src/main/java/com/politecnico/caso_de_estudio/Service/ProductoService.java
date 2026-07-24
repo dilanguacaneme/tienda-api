@@ -1,6 +1,7 @@
 package com.politecnico.caso_de_estudio.Service;
 
 import com.politecnico.caso_de_estudio.Entity.Producto;
+import com.politecnico.caso_de_estudio.Exeption.InventarioVacioException;
 import com.politecnico.caso_de_estudio.Exeption.ProductoNoEncontradoException;
 import com.politecnico.caso_de_estudio.Repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,12 @@ public class ProductoService {
 
     //Create
     public Producto crearProducto (Producto producto){
+
+
+        Double total = producto.getCantidad() * producto.getPrecio();
+        producto.setTotalProducto(total);
+
+
         return productoRepository.save(producto);
     }
 
@@ -89,4 +96,9 @@ public class ProductoService {
     //Producto mas cerca a acabarse
 
     //Costo total inventario
+    public Double totalInventario (){
+
+        return productoRepository.totalInventario().orElseThrow(InventarioVacioException::new);
+
+    }
 }

@@ -24,5 +24,6 @@ public class DetalleFactura {
     private Producto producto;
 
     private Integer cantidad;
+
     private Double subtotal;
 }
