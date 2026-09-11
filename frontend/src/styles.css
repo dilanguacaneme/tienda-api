@@ -1,0 +1,252 @@
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  color: #19261d;
+  background: #f4f7f3;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+button,
+input,
+select {
+  font: inherit;
+}
+button {
+  border: 0;
+  border-radius: 9px;
+  padding: 0.72rem 1rem;
+  cursor: pointer;
+  color: white;
+  background: #1f6b45;
+  font-weight: 700;
+}
+button:hover {
+  background: #165135;
+}
+button.secondary {
+  background: #e4eee7;
+  color: #275c3d;
+}
+button.secondary:hover {
+  background: #d2e3d7;
+}
+button.danger {
+  color: #b02d2d;
+}
+button.link {
+  background: none;
+  color: #1f6b45;
+  padding: 0.25rem 0.4rem;
+}
+button.icon {
+  padding: 0.35rem 0.65rem;
+  background: #f5e7e7;
+  color: #a22929;
+}
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background:
+    radial-gradient(circle at top right, #cde8d5, transparent 35%), #f4f7f3;
+}
+.login-card {
+  width: min(100%, 420px);
+  background: white;
+  border: 1px solid #dce8df;
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 18px 55px #1d493016;
+  display: grid;
+  gap: 1rem;
+}
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+h1 {
+  margin-bottom: 0.35rem;
+}
+h2 {
+  font-size: 1.1rem;
+  margin-bottom: 0;
+}
+.eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.13em;
+  color: #48825d;
+  font-weight: 800;
+  margin-bottom: 0.45rem;
+}
+label {
+  display: grid;
+  gap: 0.38rem;
+  color: #45604c;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+input,
+select {
+  width: 100%;
+  border: 1px solid #cbd9ce;
+  border-radius: 8px;
+  padding: 0.7rem 0.75rem;
+  background: #fff;
+  color: #19261d;
+}
+input:focus,
+select:focus {
+  outline: 3px solid #b7dcc1;
+  border-color: #55946a;
+}
+.app {
+  max-width: 1180px;
+  padding: 2.3rem 1.25rem 4rem;
+  margin: auto;
+}
+header,
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+header {
+  margin-bottom: 1.6rem;
+}
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.metrics article,
+.panel {
+  background: white;
+  border: 1px solid #dce8df;
+  border-radius: 14px;
+  padding: 1.25rem;
+  box-shadow: 0 4px 14px #183a2010;
+}
+.metrics span {
+  display: block;
+  font-size: 0.85rem;
+  color: #58705f;
+}
+.metrics strong {
+  display: block;
+  margin-top: 0.4rem;
+  color: #1e663f;
+  font-size: 1.65rem;
+}
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.9rem;
+}
+.form-grid h2,
+.form-grid .full {
+  grid-column: 1 / -1;
+}
+.actions {
+  display: flex;
+  gap: 0.65rem;
+}
+.invoice {
+  display: grid;
+  gap: 0.9rem;
+}
+.invoice-items {
+  display: grid;
+  gap: 0.55rem;
+}
+.item-row {
+  display: grid;
+  grid-template-columns: 1fr 105px 40px;
+  gap: 0.45rem;
+}
+.item-row:has(button:only-child) {
+  grid-template-columns: 1fr 105px;
+}
+.panel + .panel {
+  margin-top: 1rem;
+}
+.section-title p {
+  color: #647c6a;
+  margin-bottom: 0;
+  font-size: 0.9rem;
+}
+.table-wrap {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+th,
+td {
+  padding: 0.85rem 0.5rem;
+  border-bottom: 1px solid #e4ece6;
+}
+th {
+  color: #58705f;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+tr.low td {
+  background: #fff9eb;
+}
+small {
+  color: #a36b00;
+  margin-left: 0.4rem;
+}
+.empty {
+  text-align: center;
+  color: #718078;
+  padding: 2rem;
+}
+.alert {
+  padding: 0.75rem 0.95rem;
+  border-radius: 8px;
+}
+.error {
+  background: #fff0f0;
+  color: #a22929;
+}
+.success {
+  background: #eaf8ee;
+  color: #1d6b3d;
+}
+@media (max-width: 700px) {
+  .metrics,
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .form-grid h2,
+  .form-grid .full {
+    grid-column: auto;
+  }
+  header {
+    align-items: flex-start;
+  }
+  .app {
+    padding-top: 1.3rem;
+  }
+}

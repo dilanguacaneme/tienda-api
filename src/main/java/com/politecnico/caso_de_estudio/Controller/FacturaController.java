@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/factura")
@@ -17,7 +18,7 @@ public class FacturaController {
     private FacturaService facturaService;
 
     @PostMapping("/crear")
-    public ResponseEntity<Object> crearFactura(@RequestBody Factura factura) {
+    public ResponseEntity<Object> crearFactura(@Valid @RequestBody Factura factura) {
         try {
             Factura facturaCreada = facturaService.crearFactura(factura);
             return ResponseEntity.status(HttpStatus.CREATED).body(facturaCreada);

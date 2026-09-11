@@ -88,6 +88,9 @@ public class ProductoService {
 
             }
 
+            productoActualizar.setTotalProducto(
+                    productoActualizar.getCantidad() * productoActualizar.getPrecio());
+
             productoRepository.save(productoActualizar);
             return productoActualizar;
         } else {

@@ -8,10 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
-
+@CrossOrigin(origins = "http://localhost:5174")
 @RestController
 @RequestMapping("/producto")
 public class ProductoController {
@@ -21,7 +22,7 @@ public class ProductoController {
 
     //Create
     @PostMapping("/crear")
-    public ResponseEntity<Producto> crearProducto (@RequestBody Producto producto){
+    public ResponseEntity<Producto> crearProducto (@Valid @RequestBody Producto producto){
 
         Producto productoCreado = productoService.crearProducto(producto);
 

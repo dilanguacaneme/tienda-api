@@ -7,6 +7,7 @@ import com.politecnico.caso_de_estudio.Repository.ProductoRepository;
 import com.politecnico.caso_de_estudio.Repository.FacturaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class FacturaService {
@@ -16,6 +17,7 @@ public class FacturaService {
     @Autowired
     private ProductoRepository productoRepository;
 
+    @Transactional
     public Factura crearFactura(Factura factura) {
 
         double totalFactura = 0.0;
